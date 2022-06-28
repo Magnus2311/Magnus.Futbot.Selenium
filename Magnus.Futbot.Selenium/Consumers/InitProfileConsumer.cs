@@ -13,18 +13,21 @@ namespace Magnus.Futbot.Selenium.Consumers
             _logger = logger;
         }
 
-        public override string Topic => "Init.Profile";
+        public override string Topic => "Magnus.Futbot.Selenium.Init.Profile";
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                Task.Run(() =>
+                await Task.Run(async () =>
                 {
                     var profileDTO = Consumer.Consume(stoppingToken);
-                    InitProfileService.InitProfile(profileDTO.Message.Value);
+                    var response = await InitProfileService.InitProfile(profileDTO.Message.Value);
                 }, stoppingToken);
             }
+
+            Consumer.Dispose();
+            Consumer.Close();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Magnus.Futbot.Common;
 using Magnus.Futbot.Common.Models;
 using Magnus.Futbot.Common.Models.Responses;
+using Magnus.Futbot.Common.Models.Selenium.Profiles;
 using OpenQA.Selenium;
 
 namespace Magnus.Futbot.Services
@@ -54,7 +55,7 @@ namespace Magnus.Futbot.Services
                 securityCodeRequired = driver.FindElement(By.CssSelector("#page_header"));
             }
             catch { }
-
+                
             if (securityCodeRequired != null)
             {
                 IWebElement sendCodeBtn = driver.FindElement(By.CssSelector("#btnSendCode"));
@@ -66,14 +67,14 @@ namespace Magnus.Futbot.Services
             return new LoginResponseDTO(ProfileStatusType.Logged, new ProfileDTO() { Email = username });
         }
 
-        public ConfirmationCodeStatusType SubmitCode(string username, string code)
+        public static ConfirmationCodeStatusType SubmitCode(SubmitCodeDTO submitCodeDTO)
         {
-            var driver = GetInstance(username).Driver;
+            var driver = GetInstance(submitCodeDTO.Email).Driver;
 
             var codeInput = driver.FindElement(By.CssSelector("#twoFactorCode"));
             if (codeInput != null)
             {
-                codeInput.SendKeys(code);
+                codeInput.SendKeys(submitCodeDTO.Code);
                 Thread.Sleep(500);
 
                 var rememberDeviceCheck = driver.FindElement(By.CssSelector("#trustThisDevice"));

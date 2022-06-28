@@ -1,9 +1,10 @@
-using Magnus.Futbot.Selenium;
+using Magnus.Futbot.Selenium.Consumers;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddHostedService<ProfilesConsumer>();
+        services.AddHostedService<InitProfileConsumer>();
+        services.AddHostedService<SecurityCodeConsumer>();
     })
     .Build();
 

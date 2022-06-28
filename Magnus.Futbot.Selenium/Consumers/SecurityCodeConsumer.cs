@@ -1,5 +1,4 @@
-﻿
-using Confluent.Kafka;
+﻿using Confluent.Kafka;
 using Magnus.Futbot.Common.Models.Selenium.Profiles;
 using Magnus.Futbot.Services;
 

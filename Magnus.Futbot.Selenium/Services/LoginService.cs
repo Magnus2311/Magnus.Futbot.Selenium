@@ -1,6 +1,4 @@
 ﻿using Magnus.Futbot.Common;
-using Magnus.Futbot.Common.Models;
-using Magnus.Futbot.Common.Models.Responses;
 using Magnus.Futbot.Common.Models.Selenium.Profiles;
 using OpenQA.Selenium;
 
@@ -8,7 +6,7 @@ namespace Magnus.Futbot.Services
 {
     public class LoginSeleniumService : BaseService
     {
-        public static LoginResponseDTO Login(string username, string password)
+        public static ProfileStatusType Login(string username, string password)
         {
             var driverInstance = GetInstance(username);
             var driver = driverInstance.Driver;
@@ -47,7 +45,7 @@ namespace Magnus.Futbot.Services
             }
             catch { }
 
-            if (wrongCredentials != null) return new LoginResponseDTO(ProfileStatusType.WrongCredentials, new ProfileDTO() { Email = username });
+            if (wrongCredentials != null) return ProfileStatusType.WrongCredentials;
 
             IWebElement? securityCodeRequired = null;
             try
@@ -60,11 +58,11 @@ namespace Magnus.Futbot.Services
             {
                 IWebElement sendCodeBtn = driver.FindElement(By.CssSelector("#btnSendCode"));
                 sendCodeBtn.Click();
-                return new LoginResponseDTO(ProfileStatusType.ConfirmationKeyRequired, new ProfileDTO() { Email = username });
+                return ProfileStatusType.ConfirmationKeyRequired;
             }
 
 
-            return new LoginResponseDTO(ProfileStatusType.Logged, new ProfileDTO() { Email = username });
+            return ProfileStatusType.Logged;
         }
 
         public static ConfirmationCodeStatusType SubmitCode(SubmitCodeDTO submitCodeDTO)

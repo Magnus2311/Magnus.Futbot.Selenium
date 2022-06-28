@@ -22,6 +22,6 @@ namespace Magnus.Futbot.Selenium.Consumers
 
                 Consumer.Dispose();
                 Consumer.Close();
-            });
+            }, stoppingToken);
     }
 }

@@ -15,19 +15,20 @@ namespace Magnus.Futbot.Selenium.Consumers
 
         public override string Topic => "Magnus.Futbot.Selenium.Init.Profile";
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            while (!stoppingToken.IsCancellationRequested)
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+            => Task.Run(() =>
             {
-                await Task.Run(async () =>
+                while (!stoppingToken.IsCancellationRequested)
                 {
-                    var profileDTO = Consumer.Consume(stoppingToken);
-                    var response = await InitProfileService.InitProfile(profileDTO.Message.Value);
-                }, stoppingToken);
-            }
+                    Task.Run(() =>
+                    {
+                        var profileDTO = Consumer.Consume(stoppingToken);
+                        var response = InitProfileService.InitProfile(profileDTO.Message.Value);
+                    }, stoppingToken);
+                }
 
-            Consumer.Dispose();
-            Consumer.Close();
-        }
+                Consumer.Dispose();
+                Consumer.Close();
+            }, stoppingToken);
     }
 }

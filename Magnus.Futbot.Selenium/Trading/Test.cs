@@ -30,7 +30,7 @@ namespace Magnus.Futbot.Selenium.Trading
             client.DefaultRequestHeaders.Add("Host", "utas.external.s2.fut.ea.com");
             client.DefaultRequestHeaders.Add("Origin", "https://www.ea.com");
             client.DefaultRequestHeaders.Add("Referer", "https://www.ea.com/");
-            client.DefaultRequestHeaders.Add("X-UT-SID", "1bae280e-8526-4b9f-8f88-6fcb55746c16");
+            client.DefaultRequestHeaders.Add("X-UT-SID", "4826f738-82a9-4972-ab70-26571484bfba");
 
             var response = await client.PutAsync(baseAddress, content);
             using (Stream stream = await response.Content.ReadAsStreamAsync())

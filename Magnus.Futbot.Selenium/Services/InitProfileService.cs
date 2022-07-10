@@ -1,5 +1,5 @@
 ﻿using Magnus.Futbot.Common;
-using Magnus.Futbot.Common.Models;
+using Magnus.Futbot.Common.Models.DTOs;
 using Magnus.Futbot.Common.Models.Selenium.Profiles;
 using OpenQA.Selenium;
 

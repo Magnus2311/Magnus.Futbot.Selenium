@@ -1,4 +1,4 @@
-﻿using Magnus.Futbot.Common.Models;
+﻿using Magnus.Futbot.Common.Models.DTOs;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 

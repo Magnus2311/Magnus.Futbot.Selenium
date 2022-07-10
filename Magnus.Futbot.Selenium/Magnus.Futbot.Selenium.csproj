@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="1.9.0" />
-    <PackageReference Include="Magnus2311.Futbot.Common" Version="0.0.6" />
+    <PackageReference Include="Magnus2311.Futbot.Common" Version="0.0.7" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Selenium.Chrome.WebDriver" Version="85.0.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.3.0" />

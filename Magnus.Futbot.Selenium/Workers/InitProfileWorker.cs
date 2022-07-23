@@ -23,7 +23,7 @@ namespace Magnus.Futbot.Selenium.Workers
                 {
                     Task.Run(() =>
                     {
-                        var profileDTO = _initProfileConsumer.Consumer.Consume(stoppingToken);
+                        var profileDTO = _initProfileConsumer.Consume(stoppingToken);
                         //var response = InitProfileService.InitProfile(profileDTO.Message.Value);
                         _profilesProducer.Produce(new ProfileDTO() { Coins = 123123123 });
                     }, stoppingToken);

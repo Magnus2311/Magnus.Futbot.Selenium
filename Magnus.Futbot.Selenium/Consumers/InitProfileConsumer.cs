@@ -11,5 +11,7 @@ namespace Magnus.Futbot.Selenium.Consumers
         }
 
         public override string Topic => "Magnus.Futbot.Selenium.Init.Profile";
+
+        public override string GroupId => "Selenium.Service.Profiles.Consumer";
     }
 }
